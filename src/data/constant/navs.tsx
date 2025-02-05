@@ -14,7 +14,7 @@ const navs: TypeNavs[] = [
   },
   {
     key: DONATE_PATH,
-    label: 'Donare',
+    label: 'Donate',
     element: <DonatePage />,
   },
 ];

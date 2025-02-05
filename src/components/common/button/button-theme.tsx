@@ -58,7 +58,6 @@ export function ButtonTheme() {
   return (
     <MaterialUISwitch
       sx={{ m: 1 }}
-      defaultChecked
       onChange={(e) =>
         e.target.checked
           ? setTheme({ theme: 'dark' })

@@ -1,14 +1,17 @@
 const FooterComponent = () => {
   return (
-    <footer className="w-full h-[200px] dark:bg-neutral-700 bg-slate-300">
-      <div className="w-full h-full flex justify-center items-center">
-      <div className="flex justify-center items-center gap-4">
-        <img src="/vite.svg" alt="logo" />
-        <span>Footer-ReactJS Boilerplate By TrongSon</span>
-      </div>
-      </div>
+    <footer className="w-full py-4 text-center text-gray-600 dark:text-gray-400 bg-gray-200 dark:bg-gray-800 mt-8">
+      © {new Date().getFullYear()} Sami Ben Chaalia. All rights reserved.
+      <a
+        href="https://sami.benchaalia.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-500 hover:underline"
+      >
+        sami.benchaalia.com
+      </a>
     </footer>
-  )
-}
+  );
+};
 
 export default FooterComponent;

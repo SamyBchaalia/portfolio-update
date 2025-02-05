@@ -18,11 +18,7 @@ export interface Shorten {
 export async function shortenUrl(
   url: string,
 ): Promise<ApiResponseShorten | void> {
-  try {
-    return await axiosClient.post('/shorten', { originalUrl: url });
-  } catch (error) {
-    console.error('Error while shortening URL', error);
-  }
+  return await axiosClient.post('/shorten', { originalUrl: url });
 }
 export async function getShortenLinks(
   ids: string[],

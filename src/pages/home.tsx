@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, ArrowRight, Copy, QrCode, MoreVertical } from 'lucide-react';
+import { Link, ArrowRight, Copy, QrCode, CornerDownRight } from 'lucide-react';
 import {
   ApiResponseShorten,
   getShortenLinks,
@@ -11,6 +11,8 @@ import {
   getLinksFromLocalStorage,
   saveLinksToLocalStorage,
 } from '@/storage/local-storage';
+import toast, { Toaster } from 'react-hot-toast';
+import { AxiosError } from 'axios';
 
 const Home = () => {
   const [url, setUrl] = useState('');
@@ -34,7 +36,7 @@ const Home = () => {
             shortUrl: l.shortUrl,
             originalUrl: l.originalUrl,
             clicks: getClickString(l.clicks),
-            iconLink: getIconLink('https://' + getDomainFromUrl(l.originalUrl)),
+            iconLink: getIconLink(getDomainFromUrl(l.originalUrl)),
             qrCode: l.qrCode,
           };
         }),
@@ -45,7 +47,7 @@ const Home = () => {
   }, []);
 
   const getIconLink = (link: string) => {
-    return `https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${link}`;
+    return `https://www.google.com/s2/favicons?sz=64&domain_url=${link}`;
   };
   const [links, setLinks] = useState<Shorten[]>([]);
   const getClickString = (clicks: number) => {
@@ -62,38 +64,38 @@ const Home = () => {
     return url;
   };
   async function shorten() {
-    const response: ApiResponseShorten = (await shortenUrl(
-      url,
-    )) as ApiResponseShorten;
-    if (response) {
-      console.log(response);
-      setUrl('');
-      setLinks([
-        {
-          shortUrl: response.shortUrl,
-          originalUrl: response.originalUrl,
-          clicks: getClickString(response.clicks),
-          iconLink: getIconLink('https://' + getDomainFromUrl(url)),
-          qrCode: response.qrCode,
-        },
-        ...links,
-      ]);
-      saveLinksToLocalStorage(response._id);
+    try {
+      const response: ApiResponseShorten = (await shortenUrl(
+        url,
+      )) as ApiResponseShorten;
+      if (response) {
+        console.log(response);
+        setUrl('');
+        toast.success('Link shortened successfully');
+        setLinks([
+          {
+            shortUrl: response.shortUrl,
+            originalUrl: response.originalUrl,
+            clicks: getClickString(response.clicks),
+            iconLink: getIconLink(getDomainFromUrl(url)),
+            qrCode: response.qrCode,
+          },
+          ...links,
+        ]);
+        saveLinksToLocalStorage(response._id);
+      }
+    } catch (e: Error | AxiosError | any) {
+      console.error(e?.response?.data.message);
+      if (e?.response?.data.message) {
+        e?.response?.data.message.forEach((message: string) => {
+          toast.error(message);
+        });
+      }
     }
   }
   return (
     <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="text-center mb-8">
-        {/* <div className="inline-flex items-center space-x-2 bg-white dark:bg-gray-800 rounded-full px-4 py-1 mb-6">
-          <span className="text-sm text-gray-600 dark:text-gray-300">
-            Introducing Acrube Conversions
-          </span>
-          <div className="flex items-center text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400">
-            <span className="text-sm">Read more</span>
-            <ArrowRight className="w-4 h-4 ml-1" />
-          </div>
-        </div> */}
-
         <h1 className="text-6xl font-bold text-gray-900 dark:text-white mb-4">
           Short links with
         </h1>
@@ -101,8 +103,8 @@ const Home = () => {
           superpowers
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
-          Arcube is the open-source link management platform for modern
-          marketing teams made by sami ben chaalia as a side project.
+          Arcube-shorten is the open-source link management platform for modern
+          marketing teams made by sami ben chaalia as a Thechnical test.
         </p>
 
         <div className="flex justify-center gap-4 mb-12">
@@ -153,21 +155,60 @@ const Home = () => {
             {links.map((link, index) => (
               <div
                 key={index}
-                className="bg-white dark:bg-gray-800 rounded-lg p-4 flex items-center justify-between"
+                className="bg-white dark:bg-gray-800 relative flex items-center justify-between gap-2 rounded-xl border border-gray-200 bg-white p-3 max-w-full shadow-none drop-shadow-sm"
               >
                 <div className="flex items-center space-x-3">
-                  <img src={link.iconLink} />
-                  <div>
-                    <p className="text-gray-900 dark:text-white font-medium">
-                      {link.shortUrl}
-                    </p>
-                    <p className="text-gray-500 dark:text-gray-400 text-sm">
-                      {link.originalUrl.length > 50 ? (
-                        <span>{link.originalUrl.substring(0, 50)}...</span>
-                      ) : (
-                        <span>{link.originalUrl}</span>
-                      )}
-                    </p>
+                  <div className="flex min-w-0 items-center gap-x-3">
+                    <div className="flex-none rounded-full border border-gray-200 bg-gradient-to-t from-gray-100 p-2">
+                      <img
+                        src={link.iconLink}
+                        alt={getDomainFromUrl(link.originalUrl) + ' icon'}
+                        height={20}
+                        width={20}
+                        loading="lazy"
+                        className="blur-0 rounded-full size-6 sm:size-6"
+                        style={{ color: 'transparent' }}
+                        decoding="async"
+                        draggable={false}
+                      />
+                    </div>
+                    <div className="min-w-0 overflow-hidden">
+                      <div className="flex items-center gap-1 sm:gap-2">
+                        <a
+                          href={link.shortUrl}
+                          target="_blank"
+                          className="truncate font-semibold text-gray-800 hover:text-black  dark:text-white"
+                          rel="noreferrer"
+                        >
+                          {link.shortUrl}
+                        </a>
+                        <div className="flex items-center gap-1 sm:gap-2">
+                          <button
+                            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md"
+                            onClick={() => {
+                              navigator.clipboard.writeText(link.shortUrl);
+                            }}
+                          >
+                            <Copy className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                          </button>
+                          <button
+                            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md"
+                            onClick={() => handleQrCodeClick(link.qrCode)}
+                          >
+                            <QrCode className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                          </button>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <CornerDownRight className="text-gray-400 w-4 h-4" />
+                        <a
+                          href={link.originalUrl}
+                          className="max-w-60 truncate text-sm text-gray-400 underline-offset-4 transition-all hover:text-gray-700 hover:underline sm:max-w-72"
+                        >
+                          {link.originalUrl}
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -176,23 +217,6 @@ const Home = () => {
                     <div className="w-4 h-4" />
                     <span>{link.clicks} clicks</span>
                   </div>
-                  <button
-                    className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md"
-                    onClick={() => {
-                      navigator.clipboard.writeText(link.shortUrl);
-                    }}
-                  >
-                    <Copy className="w-4 h-4 text-gray-500 dark:text-gray-400" />
-                  </button>
-                  <button
-                    className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md"
-                    onClick={() => handleQrCodeClick(link.qrCode)}
-                  >
-                    <QrCode className="w-4 h-4 text-gray-500 dark:text-gray-400" />
-                  </button>
-                  <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
-                    <MoreVertical className="w-4 h-4 text-gray-500 dark:text-gray-400" />
-                  </button>
                 </div>
               </div>
             ))}
@@ -204,6 +228,7 @@ const Home = () => {
         onClose={() => setQrDialogOpen(false)}
         url={selectedQrCode}
       />
+      <Toaster />
     </main>
   );
 };

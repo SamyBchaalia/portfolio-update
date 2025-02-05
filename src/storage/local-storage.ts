@@ -3,6 +3,6 @@ export function getLinksFromLocalStorage() {
 }
 export function saveLinksToLocalStorage(link: string) {
   const links = getLinksFromLocalStorage();
-  links.push(link);
+  links.unshift(link);
   localStorage.setItem('links', JSON.stringify(links));
 }

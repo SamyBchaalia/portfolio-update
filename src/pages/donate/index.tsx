@@ -10,7 +10,7 @@ const DonatePage: FC = () => {
           development.
         </p>
         <a
-          href="https://www.paypal.com/donate?hosted_button_id=6H9RCGT7KEKWL"
+          href="https://www.paypal.com/donate?hosted_button_id=D56LV2NJ87FYE"
           target="_blank"
           rel="noopener noreferrer"
           className="mt-4 inline-block px-6 py-3 bg-blue-500 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-600 transition"
