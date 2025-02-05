@@ -8,7 +8,6 @@ interface QRCodeDialogProps {
 }
 
 export function QRCodeDialog({ isOpen, onClose, url }: QRCodeDialogProps) {
-  const [showLogo, setShowLogo] = useState(true);
   const [qrColor, setQrColor] = useState('#000000');
 
   if (!isOpen) return null;

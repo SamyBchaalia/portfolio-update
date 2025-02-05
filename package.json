@@ -1,8 +1,8 @@
 {
   "name": "react-template-for-starter",
-  "author": "NuiCoder",
+  "author": "SamyBenChaalia",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,7 +12,8 @@
     "format": "prettier --write **/*.{js,ts,tsx} && eslint . --ext js,ts,tsx --fix",
     "preview": "vite preview",
     "postinstall": "bash postinstall.sh",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "husky": {
     "hooks": {
