@@ -180,7 +180,7 @@ const Home = () => {
                           className="truncate font-semibold text-gray-800 hover:text-black  dark:text-white"
                           rel="noreferrer"
                         >
-                          {link.shortUrl}
+                          {link.shortUrl.replace('arcube.benchaalia.com', '')}
                         </a>
                         <div className="flex items-center gap-1 sm:gap-2">
                           <button
