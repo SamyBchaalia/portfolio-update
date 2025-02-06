@@ -177,7 +177,7 @@ const Home = () => {
                         <a
                           href={'https://' + link.shortUrl}
                           target="_blank"
-                          className="truncate font-semibold text-gray-800 text-base hover:text-black  dark:text-white"
+                          className="truncate font-semibold text-gray-800 text-sm hover:text-black  dark:text-white"
                           rel="noreferrer"
                         >
                           {link.shortUrl.replace('arcube.benchaalia.com', '')}
@@ -203,7 +203,7 @@ const Home = () => {
                         <CornerDownRight className="text-gray-400 w-4 h-4" />
                         <a
                           href={link.originalUrl}
-                          className="max-w-60 truncate text-sm text-gray-400 underline-offset-4 transition-all hover:text-gray-700 hover:underline sm:max-w-72"
+                          className="max-w-60 truncate text-xs text-gray-400 underline-offset-4 transition-all hover:text-gray-700 hover:underline sm:max-w-72"
                         >
                           {link.originalUrl}
                         </a>
