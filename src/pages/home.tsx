@@ -116,7 +116,7 @@ const Home = () => {
             About me
           </a>
           <a
-            href="www.github.com/samibenchaalia"
+            href="https://github.com/SamyBchaalia/arcube-frontend-test.git"
             target="_blank"
             className="bg-black dark:bg-white text-white dark:text-black px-6 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity"
           >
@@ -175,7 +175,7 @@ const Home = () => {
                     <div className="min-w-0 overflow-hidden">
                       <div className="flex items-center gap-1 sm:gap-2">
                         <a
-                          href={link.shortUrl}
+                          href={'https://' + link.shortUrl}
                           target="_blank"
                           className="truncate font-semibold text-gray-800 hover:text-black  dark:text-white"
                           rel="noreferrer"
