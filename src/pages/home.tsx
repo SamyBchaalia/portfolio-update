@@ -1,11 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, ArrowRight, Copy, QrCode, CornerDownRight } from 'lucide-react';
-import {
-  ApiResponseShorten,
-  getShortenLinks,
-  Shorten,
-  shortenUrl,
-} from '@/apis/shorten-url';
+
 import { QRCodeDialog } from '@/components/QRcodeDialog/qrcode-dialog';
 import {
   getLinksFromLocalStorage,
@@ -13,6 +8,8 @@ import {
 } from '@/storage/local-storage';
 import toast, { Toaster } from 'react-hot-toast';
 import { AxiosError } from 'axios';
+import ShortenApi from '@/features/shorten/services/shorten.api';
+import { Shorten, ApiResponseShorten } from '@/features/shorten/services/types';
 
 const Home = () => {
   const [url, setUrl] = useState('');
@@ -27,7 +24,7 @@ const Home = () => {
     const linkIds = getLinksFromLocalStorage();
     console.log(linkIds);
     if (linkIds.length === 0) return;
-    const links = await getShortenLinks(linkIds);
+    const links = await ShortenApi.getShortenLinks(linkIds);
     console.log(links);
     if (links)
       setLinks(
@@ -65,9 +62,9 @@ const Home = () => {
   };
   async function shorten() {
     try {
-      const response: ApiResponseShorten = (await shortenUrl(
-        url,
-      )) as ApiResponseShorten;
+      const response: ApiResponseShorten = (await ShortenApi.shortenUrl({
+        originalUrl: url,
+      })) as ApiResponseShorten;
       if (response) {
         console.log(response);
         setUrl('');
