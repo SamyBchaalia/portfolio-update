@@ -211,7 +211,9 @@ const Home = () => {
 
                 <div className="flex items-center space-x-2">
                   <div className="flex items-center space-x-1 text-gray-500 dark:text-gray-400">
-                    <span>{link.clicks} clicks</span>
+                    <span>
+                      {link.clicks} {link.clicks == '1' ? 'click' : 'clicks'}
+                    </span>
                   </div>
                 </div>
               </div>
