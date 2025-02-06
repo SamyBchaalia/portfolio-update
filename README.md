@@ -74,14 +74,14 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 The frontend communicates with the backend using the following endpoints:
 
 - **POST `/shorten`** - Accepts a long URL and returns a shortened version.
-- **GET `/{shortened_id}`** - Redirects to the original URL.
+- **GET `/shorten/{shortened_id}`** - Redirects to the original URL.
 
 ### 🔑 Environment Variables
 
 Create a `.env.local` file and set the backend API URL:
 
 \`\`\`env
-NEXT_PUBLIC_API_BASE_URL=https://your-backend-url.com
+VITE_API_URL=https://your-backend-url.com
 \`\`\`
 
 ## 🧪 Testing
