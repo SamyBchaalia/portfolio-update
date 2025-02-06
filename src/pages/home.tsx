@@ -214,7 +214,6 @@ const Home = () => {
 
                 <div className="flex items-center space-x-2">
                   <div className="flex items-center space-x-1 text-gray-500 dark:text-gray-400">
-                    <div className="w-4 h-4" />
                     <span>{link.clicks} clicks</span>
                   </div>
                 </div>
