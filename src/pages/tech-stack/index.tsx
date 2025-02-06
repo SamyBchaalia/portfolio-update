@@ -9,7 +9,8 @@ import {
   Workflow,
   FileCode2,
 } from 'lucide-react';
-import { TechCard } from '@/layout/tech-card';
+import { TechCard } from '@/components/tech-card';
+import { RepoCard } from '@/components/repo-card';
 
 const TeckStack: FC = () => {
   const technologies = [
@@ -110,7 +111,20 @@ const TeckStack: FC = () => {
       ],
     },
   ];
-
+  const repositories = [
+    {
+      title: 'Frontend Repository',
+      description:
+        'React-based frontend application built with TypeScript, Vite, and Tailwind CSS. Features modern UI components and responsive design.',
+      link: 'https://github.com/SamyBchaalia/arcube-frontend-test',
+    },
+    {
+      title: 'Backend Repository',
+      description:
+        'NestJS backend service with MongoDB integration, RESTful API endpoints, and comprehensive documentation.',
+      link: 'https://github.com/SamyBchaalia/arcube-backend-test',
+    },
+  ];
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -124,6 +138,16 @@ const TeckStack: FC = () => {
             and high-performance applications. Here's what powers our
             development process.
           </p>
+        </div>
+        <div className="mb-16">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+            Open Source Repositories
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {repositories.map((repo, index) => (
+              <RepoCard key={index} {...repo} />
+            ))}
+          </div>
         </div>
 
         {/* Tech Cards Grid */}
