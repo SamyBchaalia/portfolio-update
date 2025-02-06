@@ -182,7 +182,7 @@ const Home = () => {
                         >
                           {link.shortUrl.replace('arcube.benchaalia.com', '')}
                         </a>
-                        <div className="flex items-center gap-1 sm:gap-2">
+                        <div className="flex items-center gap-1 ">
                           <button
                             className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md"
                             onClick={() => {
