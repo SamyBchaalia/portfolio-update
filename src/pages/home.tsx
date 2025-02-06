@@ -96,10 +96,10 @@ const Home = () => {
   return (
     <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="text-center mb-8">
-        <h1 className="text-6xl font-bold text-gray-900 dark:text-white mb-4">
+        <h1 className="mt-5 text-center font-display text-4xl font-medium text-neutral-900 sm:text-5xl sm:leading-[1.15] animate-slide-up-fade [--offset:20px] [animation-duration:1s] [animation-fill-mode:both] motion-reduce:animate-fade-in [animation-delay:100ms] dark:text-white mb-4">
           Short links with
         </h1>
-        <h1 className="text-6xl font-bold text-gray-900 dark:text-white mb-6">
+        <h1 className="mt-5 text-center font-display text-4xl font-medium text-neutral-900 sm:text-5xl sm:leading-[1.15] animate-slide-up-fade [--offset:20px] [animation-duration:1s] [animation-fill-mode:both] motion-reduce:animate-fade-in [animation-delay:100ms] dark:text-white mb-6">
           superpowers
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
