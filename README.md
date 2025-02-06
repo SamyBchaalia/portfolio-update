@@ -8,6 +8,7 @@
 <p align="center">
 <img src="public/assets/imgs/banner.png?raw=true" alt="URL Shortener Banner" />
 </p>
+
 ## ✨ Features
 
 - ⚡ **[React.js 18+](https://react.dev/)** - Fast and scalable frontend framework
@@ -19,6 +20,14 @@
 - 🚫 **Lint-staged** - Run linters on staged Git files
 - 🗂 **Organized Project Structure** for scalability
 - ✅ **Strict Mode Enabled** for TypeScript and React
+
+## ✨ Key Features
+
+- 🔗 **URL Shortening**: Effortlessly shorten long URLs for easier sharing.
+- 🖼️ **Link Preview**: Automatically generate preview images for shared links.
+- 📱 **QR Code Generation**: Generate QR codes for quick access to shortened URLs.
+- 🎨 **Customizable QR Codes**: Customize QR code colors to match your brand or preferences.
+- 📊 **Click Tracking**: Monitor the number of clicks for each shortened link to gain insights.
 
 ## 📜 Requirements
 
