@@ -177,7 +177,7 @@ const Home = () => {
                         <a
                           href={'https://' + link.shortUrl}
                           target="_blank"
-                          className="truncate font-semibold text-gray-800 hover:text-black  dark:text-white"
+                          className="truncate font-semibold text-gray-800 text-base hover:text-black  dark:text-white"
                           rel="noreferrer"
                         >
                           {link.shortUrl.replace('arcube.benchaalia.com', '')}
