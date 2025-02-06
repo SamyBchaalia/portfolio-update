@@ -167,7 +167,8 @@ const TeckStack: FC = () => {
             our modern tech stack.
           </p>
           <a
-            href="sami.benchaalia.com"
+            href="https://sami.benchaalia.com"
+            target="_blank"
             className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-medium transition-colors"
           >
             Start Building

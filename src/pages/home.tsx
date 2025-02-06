@@ -6,7 +6,7 @@ import {
   Shorten,
   shortenUrl,
 } from '@/apis/shorten-url';
-import { QRCodeDialog } from '@/layout/QRcodeDialog/qrcode-dialog';
+import { QRCodeDialog } from '@/components/QRcodeDialog/qrcode-dialog';
 import {
   getLinksFromLocalStorage,
   saveLinksToLocalStorage,
