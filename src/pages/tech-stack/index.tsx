@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import {
   Code2,
   Database,
@@ -9,13 +10,14 @@ import {
   Workflow,
   FileCode2,
 } from 'lucide-react';
-import { TechCard } from '@/components/tech-card';
-import { RepoCard } from '@/components/repo-card';
+
+import { RepoCard } from '../../components/repo-card';
+import { TechCard } from '../../components/tech-card';
 
 const TeckStack: FC = () => {
   const technologies = [
     {
-      icon: <Code2 className="w-6 h-6 text-blue-500" />,
+      icon: <Code2 className="size-6 text-blue-500" />,
       title: 'React',
       description:
         'A JavaScript library for building user interfaces with a declarative and component-based approach.',
@@ -27,7 +29,7 @@ const TeckStack: FC = () => {
       ],
     },
     {
-      icon: <Layers className="w-6 h-6 text-green-500" />,
+      icon: <Layers className="size-6 text-green-500" />,
       title: 'NestJS',
       description:
         'A progressive Node.js framework for building efficient and scalable server-side applications.',
@@ -39,7 +41,7 @@ const TeckStack: FC = () => {
       ],
     },
     {
-      icon: <Database className="w-6 h-6 text-yellow-500" />,
+      icon: <Database className="size-6 text-yellow-500" />,
       title: 'MongoDB',
       description:
         'A document database designed for ease of development and scaling with flexible schema design.',
@@ -51,7 +53,7 @@ const TeckStack: FC = () => {
       ],
     },
     {
-      icon: <FileCode2 className="w-6 h-6 text-blue-600" />,
+      icon: <FileCode2 className="size-6 text-blue-600" />,
       title: 'TypeScript',
       description:
         'A typed superset of JavaScript that compiles to plain JavaScript, adding optional static types.',
@@ -63,7 +65,7 @@ const TeckStack: FC = () => {
       ],
     },
     {
-      icon: <Box className="w-6 h-6 text-red-500" />,
+      icon: <Box className="size-6 text-red-500" />,
       title: 'ESLint & Prettier',
       description:
         'Code quality tools that help maintain consistent code style and catch potential errors.',
@@ -75,7 +77,7 @@ const TeckStack: FC = () => {
       ],
     },
     {
-      icon: <Zap className="w-6 h-6 text-yellow-600" />,
+      icon: <Zap className="size-6 text-yellow-600" />,
       title: 'Vite',
       description:
         'A modern frontend build tool that offers a faster and leaner development experience.',
@@ -87,7 +89,7 @@ const TeckStack: FC = () => {
       ],
     },
     {
-      icon: <Palette className="w-6 h-6 text-teal-500" />,
+      icon: <Palette className="size-6 text-teal-500" />,
       title: 'Tailwind CSS',
       description:
         'A utility-first CSS framework for rapidly building custom user interfaces.',
@@ -99,7 +101,7 @@ const TeckStack: FC = () => {
       ],
     },
     {
-      icon: <Workflow className="w-6 h-6 text-purple-500" />,
+      icon: <Workflow className="size-6 text-purple-500" />,
       title: 'Development Workflow',
       description:
         'A modern development workflow that emphasizes code quality and developer experience.',
@@ -126,50 +128,51 @@ const TeckStack: FC = () => {
     },
   ];
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="min-h-screen bg-gray-50 pt-16 dark:bg-gray-900">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         {/* Hero Section */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Our Tech Stack
+        <div className="mb-16 text-center">
+          <h1 className="mb-4 text-4xl font-bold text-gray-900 dark:text-white">
+            Tech Stack
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            We use cutting-edge technologies to build scalable, maintainable,
-            and high-performance applications. Here's what powers our
+          <p className="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-300">
+            Cutting-edge technologies to build scalable, maintainable, and
+            high-performance applications. Here&apos;s what powers our
             development process.
           </p>
         </div>
         <div className="mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+          <h2 className="mb-6 text-center text-2xl font-bold text-gray-900 dark:text-white">
             Open Source Repositories
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {repositories.map((repo, index) => (
-              <RepoCard key={index} {...repo} />
+          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2">
+            {repositories.map((repo) => (
+              <RepoCard key={repo.title} {...repo} />
             ))}
           </div>
         </div>
 
         {/* Tech Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {technologies.map((tech, index) => (
-            <TechCard key={index} {...tech} />
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {technologies.map((tech) => (
+            <TechCard key={tech.title} {...tech} />
           ))}
         </div>
 
         {/* Bottom CTA */}
         <div className="mt-16 text-center">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
             Ready to Build Something Amazing?
           </h2>
-          <p className="text-gray-600 dark:text-gray-300 mb-8">
+          <p className="mb-8 text-gray-600 dark:text-gray-300">
             Join us in creating the next generation of web applications using
             our modern tech stack.
           </p>
           <a
             href="https://sami.benchaalia.com"
             target="_blank"
-            className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-medium transition-colors"
+            className="rounded-lg bg-blue-500 px-8 py-3 font-medium text-white transition-colors hover:bg-blue-600"
+            rel="noreferrer"
           >
             Start Building
           </a>

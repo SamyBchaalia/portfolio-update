@@ -57,3 +57,24 @@
     @apply bg-background text-foreground;
   }
 }
+
+.experience-card,
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(2rem);
+}
+
+.experience-card.show,
+.animate-on-scroll.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-card,
+  .animate-on-scroll {
+    transition: none !important;
+    opacity: 1;
+    transform: none !important;
+  }
+}

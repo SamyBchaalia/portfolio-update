@@ -14,11 +14,11 @@ export function RepoCard({
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className="block bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
+      className="block rounded-xl bg-white p-6 shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl dark:bg-gray-800"
     >
-      <div className="flex items-center space-x-4 mb-4">
-        <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-          <Github className="w-6 h-6 text-gray-900 dark:text-white" />
+      <div className="mb-4 flex items-center space-x-4">
+        <div className="rounded-lg bg-gray-50 p-3 dark:bg-gray-700">
+          <Github className="size-6 text-gray-900 dark:text-white" />
         </div>
         <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
           {title}

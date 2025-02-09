@@ -9,13 +9,13 @@ import HeaderComponent from './header';
 
 const LayoutComponent = () => {
   return (
-    <div className="w-full h-full">
+    <div className="size-full">
       <HeaderComponent />
-      <div className="px-4 py-20 flex flex-col min-h-[calc(100vh-200px)]">
+      <div className="flex min-h-[calc(100vh-200px)] flex-col px-4 py-20">
         <ErrorBoundary fallbackRender={fallbackRender}>
           <Suspense
             fallback={
-              <div className="w-full h-full flex justify-center items-center">
+              <div className="flex size-full items-center justify-center">
                 <span>Loading...</span>
               </div>
             }

@@ -15,6 +15,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:tailwindcss/recommended',
   ],
   overrides: [
     {
@@ -34,7 +35,12 @@ module.exports = {
     project: ['./tsconfig.json', './.eslintrc.cjs'],
     tsconfigRootDir: __dirname,
   },
-  plugins: ['@typescript-eslint', 'import', 'simple-import-sort'],
+  plugins: [
+    '@typescript-eslint',
+    'import',
+    'simple-import-sort',
+    'tailwindcss',
+  ],
   rules: {
     'no-console': 2,
     'react-hooks/rules-of-hooks': 2,
@@ -45,6 +51,7 @@ module.exports = {
     '@typescript-eslint/no-non-null-assertion': 0,
     'no-unused-vars': 'off',
     '@typescript-eslint/no-misused-promises': 'off',
+    'tailwindcss/no-custom-classname': 'off',
     '@typescript-eslint/no-unused-vars': [
       2,
       {

@@ -6,4 +6,7 @@ const DonatePage = lazy(() => import('@/pages/donate'));
 
 const TeckStack = lazy(() => import('@/pages/tech-stack'));
 const Docs = lazy(() => import('@/pages/docs'));
-export { Home, DonatePage, TeckStack, Docs };
+const ContactPage = lazy(() => import('@/pages/contact'));
+const AwardsPage = lazy(() => import('@/pages/awards'));
+
+export { Home, DonatePage, TeckStack, Docs, ContactPage, AwardsPage };
