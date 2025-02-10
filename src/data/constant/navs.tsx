@@ -1,9 +1,21 @@
 import { cloneDeep } from 'lodash';
 import { Link } from 'react-router-dom';
 
-import { HOME_PATH, CONTACT_PATH, AWARDS_PATH, TECH_STACK_PATH } from './path';
+import {
+  HOME_PATH,
+  CONTACT_PATH,
+  AWARDS_PATH,
+  TECH_STACK_PATH,
+  PORTFOLIO_PATH,
+} from './path';
 import { TypeNavs, TypeRoutes } from './type-navs';
-import { Home, ContactPage, AwardsPage, TeckStack } from '@/pages';
+import {
+  Home,
+  ContactPage,
+  AwardsPage,
+  TeckStack,
+  PortfolioPage,
+} from '@/pages';
 import { capitalizeFirstLetter } from '@/utils';
 
 const navs: TypeNavs[] = [
@@ -13,6 +25,8 @@ const navs: TypeNavs[] = [
     element: <Home />,
   },
   { key: AWARDS_PATH, label: 'Awards', element: <AwardsPage /> },
+  { key: PORTFOLIO_PATH, label: 'Portfolio', element: <PortfolioPage /> },
+
   { key: TECH_STACK_PATH, label: 'Tech Stack', element: <TeckStack /> },
   {
     key: CONTACT_PATH,

@@ -4,3 +4,4 @@ export const CONTACT_PATH = '/contact';
 export const TECH_STACK_PATH = '/tech-stack';
 export const DOCS_PATH = '/docs';
 export const AWARDS_PATH = '/awards';
+export const PORTFOLIO_PATH = '/portfolio';
