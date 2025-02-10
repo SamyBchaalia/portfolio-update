@@ -69,16 +69,7 @@ export default function Portfolio() {
       description:
         'Internal CRM for managing customer data, orders, and inventory. It includes a dashboard for tracking sales, revenue, and customer satisfaction.',
       image: '/assets/imgs/portfolio/logo_crm.png',
-      liveUrl: 'https://example.com/healthcare-dashboard',
-      githubUrl: 'https://github.com/yourusername/healthcare-dashboard',
-      technologies: [
-        'React',
-        'D3.js',
-        'Node.js',
-        'MongoDB',
-        'WebSocket',
-        'TensorFlow.js',
-      ],
+      technologies: ['Angular', 'Nest.js', 'PostgresQl', 'WebSocket'],
     },
     {
       title: 'Le Genevois Français',
