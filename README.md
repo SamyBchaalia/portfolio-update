@@ -21,14 +21,6 @@
 - 🗂 **Organized Project Structure** for scalability
 - ✅ **Strict Mode Enabled** for TypeScript and React
 
-## ✨ Key Features
-
-- 🔗 **URL Shortening**: Effortlessly shorten long URLs for easier sharing.
-- 🖼️ **Link Preview**: Automatically generate preview images for shared links.
-- 📱 **QR Code Generation**: Generate QR codes for quick access to shortened URLs.
-- 🎨 **Customizable QR Codes**: Customize QR code colors to match your brand or preferences.
-- 📊 **Click Tracking**: Monitor the number of clicks for each shortened link to gain insights.
-
 ## 📜 Requirements
 
 - **Node.js 16+**
@@ -39,8 +31,8 @@
 Clone the repository and install dependencies:
 
 ```shell
-git clone https://github.com/SamyBchaalia/arcube-frontend-test.git
-cd arcube-frontend-test
+git clone https://github.com/SamyBchaalia/portfolio-update.git
+cd portfolio-update
 pnpm install
 ```
 
@@ -78,13 +70,6 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 ├── tsconfig.json # TypeScript configuration
 ```
 
-## 🌍 API Integration
-
-The frontend communicates with the backend using the following endpoints:
-
-- **POST `/shorten`** - Accepts a long URL and returns a shortened version.
-- **GET `/shorten/{shortened_id}`** - Redirects to the original URL.
-
 ### 🔑 Environment Variables
 
 Create a `.env.local` file and set the backend API URL:
@@ -108,10 +93,6 @@ Deploy using **Vercel, Netlify, or your preferred hosting platform**:
 ```shell
 vercel deploy # For Vercel
 ```
-
-## 📜 License
-
-This project is **open-source** under the **MIT License**.
 
 ---
 
