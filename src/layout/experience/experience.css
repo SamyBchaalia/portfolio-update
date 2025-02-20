@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.experience-card {
+  opacity: 0;
+  transform: translateY(2rem);
+}
+
+.experience-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-card {
+    transition: none !important;
+    opacity: 1;
+    transform: none !important;
+  }
+}

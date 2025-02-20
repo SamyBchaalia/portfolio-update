@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { X, Download, Copy, HelpCircle } from 'lucide-react';
 
 interface QRCodeDialogProps {
@@ -8,7 +9,6 @@ interface QRCodeDialogProps {
 }
 
 export function QRCodeDialog({ isOpen, onClose, url }: QRCodeDialogProps) {
-  const [showLogo, setShowLogo] = useState(true);
   const [qrColor, setQrColor] = useState('#000000');
 
   if (!isOpen) return null;
@@ -35,14 +35,14 @@ export function QRCodeDialog({ isOpen, onClose, url }: QRCodeDialogProps) {
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(url);
+    void navigator.clipboard.writeText(url);
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="bg-white dark:bg-gray-800 rounded-lg w-full max-w-lg mx-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+      <div className="mx-4 w-full max-w-lg rounded-lg bg-white dark:bg-gray-800">
         <div className="p-6">
-          <div className="flex justify-between items-center mb-6">
+          <div className="mb-6 flex items-center justify-between">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white">
               QR Code Design
             </h2>
@@ -50,41 +50,41 @@ export function QRCodeDialog({ isOpen, onClose, url }: QRCodeDialogProps) {
               onClick={onClose}
               className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
             >
-              <X className="w-5 h-5" />
+              <X className="size-5" />
             </button>
           </div>
 
           <div className="space-y-6">
             <div>
-              <div className="flex items-center justify-between mb-2">
+              <div className="mb-2 flex items-center justify-between">
                 <div className="flex items-center space-x-2">
                   <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                     QR Code Preview
                   </span>
-                  <HelpCircle className="w-4 h-4 text-gray-400" />
+                  <HelpCircle className="size-4 text-gray-400" />
                 </div>
                 <div className="flex space-x-2">
                   <button
                     onClick={handleDownload}
-                    className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md"
+                    className="rounded-md p-2 hover:bg-gray-100 dark:hover:bg-gray-700"
                   >
-                    <Download className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                    <Download className="size-4 text-gray-500 dark:text-gray-400" />
                   </button>
                   <button
                     onClick={handleCopy}
-                    className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md"
+                    className="rounded-md p-2 hover:bg-gray-100 dark:hover:bg-gray-700"
                   >
-                    <Copy className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                    <Copy className="size-4 text-gray-500 dark:text-gray-400" />
                   </button>
                 </div>
               </div>
 
-              <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4 flex items-center justify-center">
-                <div className="w-48 h-48 bg-white dark:bg-gray-800 rounded-lg flex items-center justify-center p-2">
+              <div className="flex items-center justify-center rounded-lg bg-gray-50 p-4 dark:bg-gray-900">
+                <div className="flex size-48 items-center justify-center rounded-lg bg-white p-2 dark:bg-gray-800">
                   <img
                     src={url}
                     alt="QR Code"
-                    className="w-full h-full object-contain"
+                    className="size-full object-contain"
                     style={{
                       filter:
                         qrColor !== '#000000'
@@ -106,10 +106,10 @@ export function QRCodeDialog({ isOpen, onClose, url }: QRCodeDialogProps) {
                     type="text"
                     value={qrColor}
                     onChange={(e) => setQrColor(e.target.value)}
-                    className="w-24 px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-md text-sm pl-8"
+                    className="w-24 rounded-md border border-gray-300 px-2 py-1 pl-8 text-sm dark:border-gray-600"
                   />
                   <div
-                    className="absolute left-2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full"
+                    className="absolute left-2 top-1/2 size-4 -translate-y-1/2 rounded-full"
                     style={{ backgroundColor: qrColor }}
                   />
                 </div>
@@ -117,7 +117,7 @@ export function QRCodeDialog({ isOpen, onClose, url }: QRCodeDialogProps) {
                   <button
                     key={color}
                     onClick={() => setQrColor(color)}
-                    className={`w-8 h-8 rounded-full transition-transform hover:scale-110 ${
+                    className={`size-8 rounded-full transition-transform hover:scale-110 ${
                       qrColor === color
                         ? 'ring-2 ring-blue-500 ring-offset-2'
                         : ''
@@ -132,11 +132,11 @@ export function QRCodeDialog({ isOpen, onClose, url }: QRCodeDialogProps) {
           <div className="mt-6 flex justify-end space-x-3">
             <button
               onClick={onClose}
-              className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+              className="rounded-lg px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
             >
               Cancel
             </button>
-            <button className="px-4 py-2 text-sm font-medium text-white bg-black dark:bg-white dark:text-black rounded-lg hover:opacity-90">
+            <button className="rounded-lg bg-black px-4 py-2 text-sm font-medium text-white hover:opacity-90 dark:bg-white dark:text-black">
               Save changes
             </button>
           </div>
