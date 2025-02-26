@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { File, Github, Linkedin, Mail } from 'lucide-react';
 
 import ContactPage from './contact';
 import { About } from '@/layout/about';
@@ -81,6 +81,13 @@ export default function Home() {
                 className="text-gray-600 transition-colors hover:text-gray-900"
               >
                 <Mail size={24} />
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.1 }}
+                href="/assets/Samy Ben Chaalia English Resume 25.pdf"
+                className="text-gray-600 transition-colors hover:text-gray-900"
+              >
+                <File size={24} />
               </motion.a>
             </motion.div>
           </motion.div>

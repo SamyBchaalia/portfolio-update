@@ -9,7 +9,7 @@ const Docs = lazy(() => import('@/pages/docs'));
 const ContactPage = lazy(() => import('@/pages/contact'));
 const AwardsPage = lazy(() => import('@/pages/awards'));
 const PortfolioPage = lazy(() => import('@/pages/portfolio'));
-
+const EmailEditorPage = lazy(() => import('@/pages/email-editor'));
 export {
   Home,
   DonatePage,
@@ -18,4 +18,5 @@ export {
   ContactPage,
   AwardsPage,
   PortfolioPage,
+  EmailEditorPage,
 };

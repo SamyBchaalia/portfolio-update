@@ -7,6 +7,7 @@ import {
   AWARDS_PATH,
   TECH_STACK_PATH,
   PORTFOLIO_PATH,
+  // EMAIL_EDITOR_PATH,
 } from './path';
 import { TypeNavs, TypeRoutes } from './type-navs';
 import {
@@ -15,6 +16,7 @@ import {
   AwardsPage,
   TeckStack,
   PortfolioPage,
+  // EmailEditorPage,
 } from '@/pages';
 import { capitalizeFirstLetter } from '@/utils';
 
@@ -25,6 +27,8 @@ const navs: TypeNavs[] = [
     element: <Home />,
   },
   { key: AWARDS_PATH, label: 'Awards', element: <AwardsPage /> },
+  // { key: EMAIL_EDITOR_PATH, label: 'Editor', element: <EmailEditorPage /> },
+
   { key: PORTFOLIO_PATH, label: 'Portfolio', element: <PortfolioPage /> },
 
   { key: TECH_STACK_PATH, label: 'Tech Stack', element: <TeckStack /> },

@@ -60,6 +60,7 @@ module.exports = {
         ignoreRestSiblings: true,
       },
     ],
+    '@typescript-eslint/no-unsafe-assignment': 'off',
     'prettier/prettier': ['off', { singleQuote: true }],
     'no-restricted-imports': [
       2,

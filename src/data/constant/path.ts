@@ -5,3 +5,4 @@ export const TECH_STACK_PATH = '/tech-stack';
 export const DOCS_PATH = '/docs';
 export const AWARDS_PATH = '/awards';
 export const PORTFOLIO_PATH = '/portfolio';
+export const EMAIL_EDITOR_PATH = '/editor';
