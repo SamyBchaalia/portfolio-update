@@ -1,43 +1,34 @@
-import { useEffect } from 'react';
-
-import { motion, useAnimation } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   Star,
-  Briefcase,
-  PhoneCall,
-  TrendingUp,
+  ExternalLink,
   CheckCircle,
+  MessageSquare,
   Calendar,
+  PhoneCall,
 } from 'lucide-react';
 
 export function Freelance() {
-  const controls = useAnimation();
-
-  useEffect(() => {
-    void controls.start({ opacity: 1, y: 0 });
-  }, [controls]);
   const freelanceProfiles = [
     {
       platform: 'Upwork',
       logo: 'https://www.upwork.com/favicon.ico',
       profileUrl: 'https://www.upwork.com/freelancers/samibenchaalia',
-      stats: {
-        rating: 5.0,
-        reviews: '3',
-        successRate: '100%',
-      },
+      rating: 5,
+      reviews: 3,
+      successRate: 100,
       color: 'green',
+      description: 'Top Rated freelancer with expertise in TypeScript & React',
     },
     {
       platform: 'Freelancer',
-      logo: 'https://www.freelancer.com/favicon.ico',
+      logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKL9X9GXvaXXSnUmZTncE3hUokvNkmFwPiKw&s',
       profileUrl: 'https://www.freelancer.com/u/samibenchaalia',
-      stats: {
-        rating: 5.0,
-        reviews: '1',
-        completionRate: '100%',
-      },
+      rating: 5,
+      reviews: 1,
+      completionRate: 100,
       color: 'blue',
+      description: 'Certified professional with proven track record',
     },
   ];
 
@@ -47,124 +38,154 @@ export function Freelance() {
   );
 
   return (
-    <section
-      id="freelance"
-      className="bg-gradient-to-b from-white to-gray-50 py-20 dark:from-gray-900 dark:to-gray-800"
-    >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="freelance" className="px-4 py-20">
+      <div className="container mx-auto max-w-6xl">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="mb-16 text-center"
         >
-          <h2 className="mb-4 text-4xl font-bold">Freelance Profiles</h2>
-          <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300">
+          <h2 className="mb-6 text-balance text-4xl font-bold md:text-5xl">
+            Freelance Profiles
+          </h2>
+          <p className="mx-auto max-w-2xl text-pretty text-xl text-gray-600 dark:text-gray-400">
             Connect with me on top freelance platforms for your next project
           </p>
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="mx-auto mt-4 h-1 w-24 rounded-full bg-gradient-to-r from-green-500 to-blue-500"
+            className="mx-auto mt-6 h-1 w-24 rounded-full bg-gradient-to-r from-green-500 to-blue-500"
           />
         </motion.div>
 
-        <div className="grid gap-8 md:grid-cols-2">
+        {/* Platform Cards */}
+        <div className="mb-16 grid grid-cols-1 gap-8 md:grid-cols-2">
           {freelanceProfiles.map((profile, index) => (
             <motion.div
               key={profile.platform}
-              initial={{ opacity: 0, x: index === 0 ? -50 : 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              whileHover={{ scale: 1.02 }}
-              className="group relative overflow-hidden rounded-2xl bg-white shadow-xl transition-all 
-                duration-300 hover:shadow-2xl dark:bg-gray-800"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              whileHover={{ y: -8 }}
+              className="group rounded-2xl border-0 bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800"
             >
-              <div
-                className={`absolute inset-0 bg-gradient-to-br 
-                ${profile.color === 'green' ? 'from-green-400/10 to-green-600/10' : 'from-blue-400/10 to-blue-600/10'}
-                opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
-              />
-
-              <div className="relative p-8">
-                <div className="mb-6 flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
-                    <motion.img
-                      src={profile.logo}
-                      alt={`${profile.platform} logo`}
-                      className="animate-float size-12 rounded-lg"
-                      style={{ animationDelay: `${index * 0.5}s` }}
-                    />
-                    <h3 className="text-2xl font-bold">{profile.platform}</h3>
-                  </div>
-                  <motion.a
-                    href={profile.profileUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`rounded-full px-6 py-2 font-semibold text-white transition-colors
-                      ${profile.color === 'green' ? 'bg-green-600 hover:bg-green-700' : 'bg-blue-600 hover:bg-blue-700'}`}
-                  >
-                    View Profile
-                  </motion.a>
+              {/* Platform Header */}
+              <div className="mb-6 flex items-center gap-4">
+                <div
+                  className={`rounded-2xl p-3 ${
+                    profile.color === 'green'
+                      ? 'bg-green-50 dark:bg-green-950'
+                      : 'bg-blue-50 dark:bg-blue-950'
+                  }`}
+                >
+                  <img
+                    src={profile.logo}
+                    alt={`${profile.platform} logo`}
+                    className="size-8"
+                  />
                 </div>
-
-                <div className="mb-6 grid grid-cols-2 gap-4">
-                  {Object.entries(profile.stats).map(([key, value]) => (
-                    <div
-                      key={key}
-                      className="flex items-center space-x-2 text-gray-700 dark:text-gray-300"
-                    >
-                      {key === 'rating' && (
-                        <Star className="size-5 fill-yellow-500 text-yellow-500" />
-                      )}
-                      {(key === 'jobs' || key === 'reviews') && (
-                        <Briefcase className="size-5 text-blue-500" />
-                      )}
-                      {(key === 'successRate' || key === 'completionRate') && (
-                        <CheckCircle className="size-5 text-green-500" />
-                      )}
-                      {(key === 'hourlyRate' || key === 'earnings') && (
-                        <TrendingUp className="size-5 text-green-600" />
-                      )}
-                      <span className="text-sm">
-                        <span className="font-semibold">{value}</span>{' '}
-                        <span className="text-gray-500 dark:text-gray-400">
-                          {key.replace(/([A-Z])/g, ' $1').toLowerCase()}
-                        </span>
-                      </span>
-                    </div>
-                  ))}
+                <div>
+                  <h3 className="text-xl font-semibold dark:text-white">
+                    {profile.platform}
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    {profile.description}
+                  </p>
                 </div>
               </div>
+
+              {/* Stats */}
+              <div className="mb-6 space-y-4">
+                {/* Rating */}
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1">
+                    {['star1', 'star2', 'star3', 'star4', 'star5'].map(
+                      (el, i) => (
+                        <Star
+                          key={el}
+                          className={`size-4 ${
+                            i < profile.rating
+                              ? 'fill-yellow-400 text-yellow-400'
+                              : 'text-gray-300 dark:text-gray-600'
+                          }`}
+                        />
+                      ),
+                    )}
+                  </div>
+                  <span className="font-medium dark:text-white">
+                    {profile.rating}
+                  </span>
+                  <div className="inline-flex items-center rounded-full bg-gray-100 px-2 py-1 text-xs dark:bg-gray-700">
+                    <MessageSquare className="mr-1 size-3" />
+                    {profile.reviews} review{profile.reviews !== 1 ? 's' : ''}
+                  </div>
+                </div>
+
+                {/* Success Rate */}
+                <div className="flex items-center gap-2">
+                  <CheckCircle
+                    className={`size-4 ${
+                      profile.color === 'green'
+                        ? 'text-green-600'
+                        : 'text-blue-600'
+                    }`}
+                  />
+                  <span className="text-sm font-medium dark:text-gray-300">
+                    {profile.successRate || profile.completionRate}% completion
+                    rate
+                  </span>
+                </div>
+              </div>
+
+              {/* CTA Button */}
+              <motion.a
+                href={profile.profileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-3 font-semibold text-white transition-transform duration-200 ${
+                  profile.color === 'green'
+                    ? 'bg-green-600 hover:bg-green-700'
+                    : 'bg-blue-600 hover:bg-blue-700'
+                }`}
+              >
+                <span>View Profile</span>
+                <ExternalLink className="size-4" />
+              </motion.a>
             </motion.div>
           ))}
         </div>
 
+        {/* Call to Action */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-12 space-y-6"
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-center"
         >
-          <div className="text-center">
-            <h3 className="mb-8 text-2xl font-bold">
+          <div className="rounded-3xl border border-green-500/20 bg-gradient-to-r from-green-500/10 to-blue-500/10 p-12 dark:from-green-500/5 dark:to-blue-500/5">
+            <h3 className="mb-4 text-3xl font-bold dark:text-white">
               Ready to start your project?
             </h3>
-            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <p className="mx-auto mb-8 max-w-2xl text-lg text-gray-600 dark:text-gray-400">
+              Let&apos;s discuss your requirements and bring your vision to life
+              with professional web development services.
+            </p>
+            <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <motion.a
                 href="https://calendly.com/sami-benchaalia/30min"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center space-x-3 rounded-full bg-blue-600 px-8 py-4 
-                  font-semibold text-white shadow-lg transition-all hover:bg-blue-700 hover:shadow-xl"
+                className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-green-500 to-blue-500 px-6 py-3 font-semibold text-white transition-all hover:from-green-600 hover:to-blue-600"
               >
                 <Calendar className="size-5" />
-                <span>Schedule a Call (30 min)</span>
+                Schedule a Call (30 min)
               </motion.a>
               <motion.a
                 href={`https://wa.me/${whatsappNumber.replace('+', '')}?text=${whatsappMessage}`}
@@ -172,11 +193,10 @@ export function Freelance() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="animate-pulse-glow inline-flex items-center space-x-3 rounded-full bg-green-600 px-8 py-4 
-                  font-semibold text-white shadow-lg transition-all hover:bg-green-700 hover:shadow-xl"
+                className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-6 py-3 font-semibold text-gray-700 transition-all hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
               >
                 <PhoneCall className="size-5" />
-                <span>WhatsApp: {whatsappNumber}</span>
+                WhatsApp: {whatsappNumber}
               </motion.a>
             </div>
           </div>
