@@ -8,3 +8,5 @@ tailwind.config.js
 i18n.ts
 public/firebase-messaging-sw.js
 src/assets
+src/index.css
+*.css

@@ -10,12 +10,34 @@ export function Chatbot() {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
+  const [hasOpened, setHasOpened] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatWindowRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  useEffect(() => {
+    if (isOpen && !hasOpened) {
+      setHasOpened(true);
+      const welcomeMessage: Message = {
+        role: 'assistant',
+        content:
+          "🚀 Hey there! I'm Sami's AI sidekick - think of me as your friendly guide through his digital universe. Whether you're curious about his TypeScript wizardry, want to explore his full-stack adventures, or just need someone to chat with while browsing, I'm here to help! What brings you to Sami's corner of the web today?",
+      };
+      setMessages([welcomeMessage]);
+    }
+  }, [isOpen, hasOpened]);
+
+  useEffect(() => {
+    // Auto-open chat after a short delay when page loads
+    const timer = setTimeout(() => {
+      setIsOpen(true);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     scrollToBottom();
@@ -92,8 +114,10 @@ export function Chatbot() {
           <div className="flex items-center gap-2">
             <Bot className="size-6" />
             <div>
-              <h3 className="font-semibold">Chat Assistant</h3>
-              <p className="text-sm text-blue-100">Always here to help</p>
+              <h3 className="font-semibold">Sami AI Assistant</h3>
+              <p className="text-sm text-blue-100">
+                Your guide to everything Sami
+              </p>
             </div>
           </div>
         </div>

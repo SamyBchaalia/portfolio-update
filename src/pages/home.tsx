@@ -4,6 +4,7 @@ import { File, Github, Linkedin, Mail } from 'lucide-react';
 import ContactPage from './contact';
 import { About } from '@/layout/about';
 import { Experience } from '@/layout/experience';
+import { Freelance } from '@/layout/freelance';
 
 export default function Home() {
   return (
@@ -84,7 +85,7 @@ export default function Home() {
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.1 }}
-                href="/assets/Samy Ben Chaalia English Resume 25.pdf"
+                href="/assets/samiresume25.pdf"
                 className="text-gray-600 transition-colors hover:text-gray-900"
               >
                 <File size={24} />
@@ -95,6 +96,7 @@ export default function Home() {
       </section>
       <About />
       <Experience />
+      <Freelance />
       <ContactPage />
     </>
   );
