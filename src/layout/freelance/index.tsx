@@ -23,7 +23,7 @@ export function Freelance() {
     {
       platform: 'Freelancer',
       logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKL9X9GXvaXXSnUmZTncE3hUokvNkmFwPiKw&s',
-      profileUrl: 'https://www.freelancer.com/u/samibenchaalia',
+      profileUrl: 'https://www.freelancer.com/u/samibchaalia',
       rating: 5,
       reviews: 1,
       completionRate: 100,
