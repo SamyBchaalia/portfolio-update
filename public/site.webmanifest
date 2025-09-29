@@ -19,11 +19,7 @@
       "type": "image/png"
     }
   ],
-  "categories": [
-    "business",
-    "productivity",
-    "developer"
-  ],
+  "categories": ["business", "productivity", "developer"],
   "lang": "en-US",
   "scope": "/",
   "related_applications": [],
