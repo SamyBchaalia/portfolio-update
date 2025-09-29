@@ -133,7 +133,7 @@ const TeckStack: FC = () => {
       <SEO
         title="Tech Stack - TypeScript, React, Node.js, NestJS Expert"
         description="Discover the modern tech stack used by Sami Ben Chaalia: TypeScript, React, Node.js, NestJS, PostgreSQL, MongoDB, and cutting-edge development tools for building scalable applications."
-        url="https://samibenchaalia.com/tech-stack"
+        url="https://sami.benchaalia.com/tech-stack"
       />
       <div className="min-h-screen bg-gray-50 pt-16 dark:bg-gray-900">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">

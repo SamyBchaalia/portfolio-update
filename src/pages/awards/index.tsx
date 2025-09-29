@@ -97,7 +97,7 @@ export default function AwardsPage() {
       <SEO
         title="Awards & Achievements - Professional Recognition"
         description="View Sami Ben Chaalia's professional awards and achievements in software development, TypeScript expertise, and project excellence. Recognized for outstanding technical contributions."
-        url="https://samibenchaalia.com/awards"
+        url="https://sami.benchaalia.com/awards"
       />
       <section
         id="awards"

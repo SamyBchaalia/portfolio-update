@@ -13,7 +13,7 @@ export default function Home() {
       <SEO
         title="Home - Full Stack Developer | TypeScript Expert"
         description="Welcome to Sami Ben Chaalia's portfolio. Expert Tunisian full-stack developer specializing in TypeScript, React, Node.js, NestJS with proven experience in building powerful and resilient applications."
-        url="https://samibenchaalia.com/"
+        url="https://sami.benchaalia.com/"
       />
       <section id="hero" className=" relative flex items-center justify-center">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">

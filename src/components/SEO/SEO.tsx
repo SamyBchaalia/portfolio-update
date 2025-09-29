@@ -18,8 +18,8 @@ const defaultSEO = {
     'Sami Ben Chaalia is a Tunisian expert full-stack developer specializing in TypeScript, React, Node.js, NestJS, PostgreSQL, and MongoDB. Professional web development services with proven expertise in modern JavaScript frameworks and database technologies.',
   keywords:
     'Sami Ben Chaalia, Tunisian developer, TypeScript expert, React developer, Node.js engineer, NestJS developer, PostgreSQL expert, MongoDB specialist, full stack developer Tunisia, web development Tunisia, JavaScript expert, frontend developer, backend developer, software engineer Tunisia',
-  image: 'https://samibenchaalia.com/og-image.png',
-  url: 'https://samibenchaalia.com',
+  image: 'https://sami.benchaalia.com/og-image.png',
+  url: 'https://sami.benchaalia.com',
   type: 'website' as const,
   twitterHandle: '@samibenchaalia',
 };
@@ -42,11 +42,11 @@ export function SEO({
     '@type': 'Person',
     name: 'Sami Ben Chaalia',
     alternateName: 'SBC',
-    url: 'https://samibenchaalia.com',
-    image: 'https://samibenchaalia.com/profile-image.jpg',
+    url: 'https://sami.benchaalia.com',
+    image: 'https://sami.benchaalia.com/profile-image.jpg',
     sameAs: [
-      'https://github.com/samibenchaalia',
-      'https://www.linkedin.com/in/samibenchaalia',
+      'https://github.com/SamyBchaalia',
+      'https://www.linkedin.com/in/sami-ben-chaalia-recruitement',
       'https://twitter.com/samibenchaalia',
       'https://www.upwork.com/freelancers/samibenchaalia',
       'https://www.freelancer.com/u/samibchaalia',

@@ -74,7 +74,7 @@ export default function ContactPage() {
       <SEO
         title="Contact - Hire Tunisian Full Stack Developer"
         description="Contact Sami Ben Chaalia, expert Tunisian full-stack developer. Available for freelance projects, consulting, and long-term engagements. TypeScript, React, Node.js specialist."
-        url="https://samibenchaalia.com/contact"
+        url="https://sami.benchaalia.com/contact"
       />
       <section
         id="contact"

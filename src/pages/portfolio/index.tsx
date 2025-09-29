@@ -114,7 +114,7 @@ export default function Portfolio() {
       <SEO
         title="Portfolio - Web Development Projects | Sami Ben Chaalia"
         description="Explore Sami Ben Chaalia's portfolio showcasing professional web development projects built with TypeScript, React, Node.js, NestJS, Angular, and modern web technologies."
-        url="https://samibenchaalia.com/portfolio"
+        url="https://sami.benchaalia.com/portfolio"
       />
       <section
         id="portfolio"
