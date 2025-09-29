@@ -1,24 +1,16 @@
-import { Suspense, lazy } from 'react';
+import { Suspense } from 'react';
 
 import { BrowserRouter } from 'react-router-dom';
 
 import RenderRouter from './render-router';
-
-// Lazy load the Chatbot component for better performance
-const Chatbot = lazy(() =>
-  import('@/components/chat-bot').then((module) => ({
-    default: module.Chatbot,
-  })),
-);
+import { Chatbot } from '@/components';
 
 const Routes = () => {
   return (
     <Suspense fallback="loading...">
       <BrowserRouter>
         <RenderRouter />
-        <Suspense fallback={null}>
-          <Chatbot />
-        </Suspense>
+        <Chatbot />
       </BrowserRouter>
     </Suspense>
   );
