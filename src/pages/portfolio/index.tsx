@@ -142,6 +142,9 @@ export default function Portfolio() {
                     <img
                       src={project.image}
                       alt={project.title}
+                      width={800}
+                      height={600}
+                      loading="lazy"
                       className="size-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </div>

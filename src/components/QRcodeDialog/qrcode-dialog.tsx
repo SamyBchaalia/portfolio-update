@@ -84,6 +84,8 @@ export function QRCodeDialog({ isOpen, onClose, url }: QRCodeDialogProps) {
                   <img
                     src={url}
                     alt="QR Code"
+                    width={192}
+                    height={192}
                     className="size-full object-contain"
                     style={{
                       filter:

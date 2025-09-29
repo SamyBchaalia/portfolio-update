@@ -37,6 +37,9 @@ export function About() {
             <img
               src="/assets/imgs/sami_profile_image.jpg"
               alt="Workspace"
+              width={600}
+              height={800}
+              loading="lazy"
               className="rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
             />
           </div>

@@ -31,10 +31,10 @@ export function Chatbot() {
   }, [isOpen, hasOpened]);
 
   useEffect(() => {
-    // Auto-open chat after a short delay when page loads
+    // Auto-open chat after a longer delay to improve initial page performance
     const timer = setTimeout(() => {
       setIsOpen(true);
-    }, 2000);
+    }, 10000); // Increased from 2 seconds to 10 seconds
 
     return () => clearTimeout(timer);
   }, []);

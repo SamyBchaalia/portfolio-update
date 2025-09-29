@@ -84,6 +84,9 @@ export function Freelance() {
                   <img
                     src={profile.logo}
                     alt={`${profile.platform} logo`}
+                    width={32}
+                    height={32}
+                    loading="lazy"
                     className="size-8"
                   />
                 </div>
