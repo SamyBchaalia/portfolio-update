@@ -15,7 +15,7 @@ export function Freelance() {
       logo: 'https://www.upwork.com/favicon.ico',
       profileUrl: 'https://www.upwork.com/freelancers/samibenchaalia',
       rating: 5,
-      reviews: 3,
+      reviews: 6,
       successRate: 100,
       color: 'green',
       description: 'Top Rated freelancer with expertise in TypeScript & React',

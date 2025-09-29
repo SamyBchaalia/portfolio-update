@@ -2,6 +2,8 @@ import { useEffect, useRef } from 'react';
 
 import { Trophy, ExternalLink } from 'lucide-react';
 
+import { SEO } from '@/components';
+
 export default function AwardsPage() {
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -91,67 +93,74 @@ export default function AwardsPage() {
   ];
 
   return (
-    <section
-      id="awards"
-      className="bg-gradient-to-b from-white to-gray-50 py-20 dark:from-gray-900 dark:to-gray-800 dark:text-white"
-    >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-16 flex items-center justify-center gap-4">
-          <Trophy className="size-8 text-blue-600 dark:text-blue-400" />
-          <h2 className="text-center text-4xl font-bold">
-            Awards & Recognition
-          </h2>
-        </div>
+    <>
+      <SEO
+        title="Awards & Achievements - Professional Recognition"
+        description="View Sami Ben Chaalia's professional awards and achievements in software development, TypeScript expertise, and project excellence. Recognized for outstanding technical contributions."
+        url="https://samibenchaalia.com/awards"
+      />
+      <section
+        id="awards"
+        className="bg-gradient-to-b from-white to-gray-50 py-20 dark:from-gray-900 dark:to-gray-800 dark:text-white"
+      >
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-16 flex items-center justify-center gap-4">
+            <Trophy className="size-8 text-blue-600 dark:text-blue-400" />
+            <h2 className="text-center text-4xl font-bold">
+              Awards & Recognition
+            </h2>
+          </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {awards.map((award, index) => (
-            <div
-              key={award.title}
-              className="animate-on-scroll group translate-y-8 opacity-0 transition-all duration-700 ease-out"
-              style={{ transitionDelay: `${index * 100}ms` }}
-            >
-              <div className="h-full overflow-hidden rounded-xl border border-gray-100 bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800">
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={award.image}
-                    alt={award.title}
-                    className="size-full object-cover transition-transform duration-300 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute inset-x-4 bottom-4">
-                    <p className="text-sm font-medium text-white">
-                      {award.organization}
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {awards.map((award, index) => (
+              <div
+                key={award.title}
+                className="animate-on-scroll group translate-y-8 opacity-0 transition-all duration-700 ease-out"
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <div className="h-full overflow-hidden rounded-xl border border-gray-100 bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800">
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={award.image}
+                      alt={award.title}
+                      className="size-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute inset-x-4 bottom-4">
+                      <p className="text-sm font-medium text-white">
+                        {award.organization}
+                      </p>
+                      <h3 className="mt-1 text-xl font-bold text-white">
+                        {award.title}
+                      </h3>
+                    </div>
+                  </div>
+
+                  <div className="p-6">
+                    <div className="mb-4 flex items-center justify-between">
+                      <span className="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                        {award.year}
+                      </span>
+                      <a
+                        href={award.articleLink}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex items-center gap-2 text-blue-600 transition-colors hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                      >
+                        <span className="text-sm">Read Article</span>
+                        <ExternalLink className="size-4" />
+                      </a>
+                    </div>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      {award.description}
                     </p>
-                    <h3 className="mt-1 text-xl font-bold text-white">
-                      {award.title}
-                    </h3>
                   </div>
-                </div>
-
-                <div className="p-6">
-                  <div className="mb-4 flex items-center justify-between">
-                    <span className="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-                      {award.year}
-                    </span>
-                    <a
-                      href={award.articleLink}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center gap-2 text-blue-600 transition-colors hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
-                    >
-                      <span className="text-sm">Read Article</span>
-                      <ExternalLink className="size-4" />
-                    </a>
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    {award.description}
-                  </p>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

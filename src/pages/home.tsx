@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { File, Github, Linkedin, Mail } from 'lucide-react';
 
 import ContactPage from './contact';
+import { SEO } from '@/components';
 import { About } from '@/layout/about';
 import { Experience } from '@/layout/experience';
 import { Freelance } from '@/layout/freelance';
@@ -9,6 +10,11 @@ import { Freelance } from '@/layout/freelance';
 export default function Home() {
   return (
     <>
+      <SEO
+        title="Home - Full Stack Developer | TypeScript Expert"
+        description="Welcome to Sami Ben Chaalia's portfolio. Expert Tunisian full-stack developer specializing in TypeScript, React, Node.js, NestJS with proven experience in building powerful and resilient applications."
+        url="https://samibenchaalia.com/"
+      />
       <section id="hero" className=" relative flex items-center justify-center">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <motion.div

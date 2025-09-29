@@ -13,6 +13,7 @@ import {
 
 import { RepoCard } from '../../components/repo-card';
 import { TechCard } from '../../components/tech-card';
+import { SEO } from '@/components';
 
 const TeckStack: FC = () => {
   const technologies = [
@@ -128,57 +129,64 @@ const TeckStack: FC = () => {
     },
   ];
   return (
-    <div className="min-h-screen bg-gray-50 pt-16 dark:bg-gray-900">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        {/* Hero Section */}
-        <div className="mb-16 text-center">
-          <h1 className="mb-4 text-4xl font-bold text-gray-900 dark:text-white">
-            Tech Stack
-          </h1>
-          <p className="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-300">
-            Cutting-edge technologies to build scalable, maintainable, and
-            high-performance applications. Here&apos;s what powers our
-            development process.
-          </p>
-        </div>
-        <div className="mb-16">
-          <h2 className="mb-6 text-center text-2xl font-bold text-gray-900 dark:text-white">
-            Open Source Repositories
-          </h2>
-          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2">
-            {repositories.map((repo) => (
-              <RepoCard key={repo.title} {...repo} />
+    <>
+      <SEO
+        title="Tech Stack - TypeScript, React, Node.js, NestJS Expert"
+        description="Discover the modern tech stack used by Sami Ben Chaalia: TypeScript, React, Node.js, NestJS, PostgreSQL, MongoDB, and cutting-edge development tools for building scalable applications."
+        url="https://samibenchaalia.com/tech-stack"
+      />
+      <div className="min-h-screen bg-gray-50 pt-16 dark:bg-gray-900">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          {/* Hero Section */}
+          <div className="mb-16 text-center">
+            <h1 className="mb-4 text-4xl font-bold text-gray-900 dark:text-white">
+              Tech Stack
+            </h1>
+            <p className="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-300">
+              Cutting-edge technologies to build scalable, maintainable, and
+              high-performance applications. Here&apos;s what powers our
+              development process.
+            </p>
+          </div>
+          <div className="mb-16">
+            <h2 className="mb-6 text-center text-2xl font-bold text-gray-900 dark:text-white">
+              Open Source Repositories
+            </h2>
+            <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2">
+              {repositories.map((repo) => (
+                <RepoCard key={repo.title} {...repo} />
+              ))}
+            </div>
+          </div>
+
+          {/* Tech Cards Grid */}
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {technologies.map((tech) => (
+              <TechCard key={tech.title} {...tech} />
             ))}
           </div>
-        </div>
 
-        {/* Tech Cards Grid */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {technologies.map((tech) => (
-            <TechCard key={tech.title} {...tech} />
-          ))}
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="mt-16 text-center">
-          <h2 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
-            Ready to Build Something Amazing?
-          </h2>
-          <p className="mb-8 text-gray-600 dark:text-gray-300">
-            Join us in creating the next generation of web applications using
-            our modern tech stack.
-          </p>
-          <a
-            href="https://sami.benchaalia.com"
-            target="_blank"
-            className="rounded-lg bg-blue-500 px-8 py-3 font-medium text-white transition-colors hover:bg-blue-600"
-            rel="noreferrer"
-          >
-            Start Building
-          </a>
+          {/* Bottom CTA */}
+          <div className="mt-16 text-center">
+            <h2 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
+              Ready to Build Something Amazing?
+            </h2>
+            <p className="mb-8 text-gray-600 dark:text-gray-300">
+              Join us in creating the next generation of web applications using
+              our modern tech stack.
+            </p>
+            <a
+              href="https://sami.benchaalia.com"
+              target="_blank"
+              className="rounded-lg bg-blue-500 px-8 py-3 font-medium text-white transition-colors hover:bg-blue-600"
+              rel="noreferrer"
+            >
+              Start Building
+            </a>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
