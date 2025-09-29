@@ -181,7 +181,9 @@ export function Chatbot() {
           <div className="flex items-end gap-2">
             <TextareaAutosize
               value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                setMessage(e.target.value)
+              }
               placeholder="Type your message..."
               maxRows={4}
               className="flex-1 resize-none rounded-xl border border-gray-200 p-3 
