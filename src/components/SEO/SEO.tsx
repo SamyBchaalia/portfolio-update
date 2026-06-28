@@ -13,11 +13,11 @@ interface SEOProps {
 
 const defaultSEO = {
   title:
-    'Sami Ben Chaalia - Full Stack Developer | TypeScript Expert | Tunisian Engineer',
+    'Sami Ben Chaalia — Senior Full-Stack Engineer & AI Developer | MVPs in Days',
   description:
-    'Sami Ben Chaalia is a Tunisian expert full-stack developer specializing in TypeScript, React, Node.js, NestJS, PostgreSQL, and MongoDB. Professional web development services with proven expertise in modern JavaScript frameworks and database technologies.',
+    'Hire Sami Ben Chaalia, a Senior Full-Stack Engineer with 6+ years of experience. I build MVPs, AI products, and business software for startups and agencies — fast, fixed-price, production-ready. Book a free call today.',
   keywords:
-    'Sami Ben Chaalia, Tunisian developer, TypeScript expert, React developer, Node.js engineer, NestJS developer, PostgreSQL expert, MongoDB specialist, full stack developer Tunisia, web development Tunisia, JavaScript expert, frontend developer, backend developer, software engineer Tunisia',
+    'hire senior full stack developer, MVP development, AI integration developer, freelance software engineer, React NestJS developer, fast MVP sprint, SaaS development, AI automation, startup engineer, Sami Ben Chaalia, TypeScript expert, full stack developer Tunisia',
   image: 'https://sami.benchaalia.com/og-image.png',
   url: 'https://sami.benchaalia.com',
   type: 'website' as const,
@@ -51,7 +51,7 @@ export function SEO({
       'https://www.upwork.com/freelancers/samibenchaalia',
       'https://www.freelancer.com/u/samibchaalia',
     ],
-    jobTitle: 'Full Stack Developer',
+    jobTitle: 'Senior Full-Stack Engineer & AI Developer',
     worksFor: {
       '@type': 'Organization',
       name: 'Freelance',
@@ -62,8 +62,11 @@ export function SEO({
       addressLocality: 'Tunisia',
     },
     description:
-      'Expert full-stack developer from Tunisia specializing in TypeScript, React, Node.js, NestJS, PostgreSQL, and MongoDB',
+      'Senior Full-Stack Engineer with 6+ years of experience building MVPs, AI products, and business software for startups and agencies. Fixed-price packages starting at €1,500.',
     knowsAbout: [
+      'MVP Development',
+      'AI Integration',
+      'SaaS Development',
       'TypeScript',
       'JavaScript',
       'React',
@@ -72,27 +75,22 @@ export function SEO({
       'PostgreSQL',
       'MongoDB',
       'Next.js',
-      'Vue.js',
       'Angular',
       'Express.js',
-      'GraphQL',
       'REST API',
       'Docker',
       'AWS',
-      'Git',
       'CI/CD',
-      'Agile',
       'Web Development',
       'Software Engineering',
+      'AI Automation',
     ],
     hasOccupation: {
       '@type': 'Occupation',
-      name: 'Software Developer',
-      educationRequirements:
-        "Bachelor's degree in Computer Science or related field",
-      experienceRequirements: '5+ years of professional experience',
+      name: 'Senior Software Engineer',
+      experienceRequirements: '6+ years of professional experience',
       skills:
-        'TypeScript, React, Node.js, NestJS, PostgreSQL, MongoDB, Full Stack Development',
+        'MVP Development, AI Integration, TypeScript, React, Node.js, NestJS, PostgreSQL, Full Stack Development',
     },
   };
 

@@ -1,9 +1,30 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 
-import { MessageSquare, X, Send, Bot, User, Loader2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X, Send, Bot, User, Sparkles } from 'lucide-react';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import { Message, sendMessage } from '@/features/shorten';
+
+const WELCOME: Message = {
+  role: 'assistant',
+  content:
+    "Hi! I'm Sami's AI assistant. Ask me anything about his services, tech stack, past projects, or availability — I'll give you a straight answer.",
+};
+
+function TypingDots() {
+  return (
+    <div className="flex items-center gap-1 px-1 py-0.5">
+      {[0, 1, 2].map((i) => (
+        <span
+          key={i}
+          className="size-1.5 animate-bounce rounded-full bg-white/40"
+          style={{ animationDelay: `${i * 0.15}s`, animationDuration: '0.9s' }}
+        />
+      ))}
+    </div>
+  );
+}
 
 export function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,195 +32,251 @@ export function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
   const [hasOpened, setHasOpened] = useState(false);
+  const [unread, setUnread] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatWindowRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  const scrollToBottom = () => {
+  const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  }, []);
 
+  // Auto-open after delay
   useEffect(() => {
-    if (isOpen && !hasOpened) {
-      setHasOpened(true);
-      const welcomeMessage: Message = {
-        role: 'assistant',
-        content:
-          "🚀 Hey there! I'm Sami's AI sidekick - think of me as your friendly guide through his digital universe. Whether you're curious about his TypeScript wizardry, want to explore his full-stack adventures, or just need someone to chat with while browsing, I'm here to help! What brings you to Sami's corner of the web today?",
-      };
-      setMessages([welcomeMessage]);
-    }
-  }, [isOpen, hasOpened]);
-
-  useEffect(() => {
-    // Auto-open chat after a longer delay to improve initial page performance
-    const timer = setTimeout(() => {
-      setIsOpen(true);
-    }, 10000); // Increased from 2 seconds to 10 seconds
-
+    const timer = setTimeout(() => setIsOpen(true), 10000);
     return () => clearTimeout(timer);
   }, []);
 
+  // Inject welcome message on first open
   useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+    if (isOpen && !hasOpened) {
+      setHasOpened(true);
+      setMessages([WELCOME]);
+    }
+    if (isOpen) setUnread(0);
+  }, [isOpen, hasOpened]);
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    scrollToBottom();
+  }, [messages, scrollToBottom]);
+
+  // Close on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
       if (
         chatWindowRef.current &&
-        !chatWindowRef.current.contains(event.target as Node)
+        !chatWindowRef.current.contains(e.target as Node)
       ) {
         setIsOpen(false);
       }
     };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!message.trim()) return;
+  // Count unread when closed
+  useEffect(() => {
+    if (!isOpen && messages.length > 0) {
+      const assistantMessages = messages.filter(
+        (m) => m.role === 'assistant',
+      ).length;
+      setUnread(assistantMessages);
+    }
+  }, [messages, isOpen]);
 
-    const userMessage: Message = {
-      role: 'user',
-      content: message,
-    };
-    setMessages([...messages, userMessage]);
+  const handleSubmit = async (e?: React.FormEvent) => {
+    e?.preventDefault();
+    if (!message.trim() || isTyping) return;
+
+    const userMsg: Message = { role: 'user', content: message.trim() };
+    const history = [...messages, userMsg];
+    setMessages(history);
     setMessage('');
     setIsTyping(true);
-    const response: string[] = await sendMessage([...messages, userMessage]);
-    const newMessages: Message[] = [
-      ...messages,
-      userMessage,
-      ...response.map((message) => {
-        return { role: 'assistant', content: message } as Message;
-      }),
-    ];
-    setMessages(newMessages);
-    setIsTyping(false);
+
+    try {
+      const response: string[] = await sendMessage(history);
+      setMessages([
+        ...history,
+        ...response.map((r) => ({ role: 'assistant' as const, content: r })),
+      ]);
+    } finally {
+      setIsTyping(false);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      void handleSubmit();
+    }
+  };
+
+  const open = () => {
+    setIsOpen(true);
+    setUnread(0);
+    setTimeout(() => inputRef.current?.focus(), 150);
   };
 
   return (
-    <>
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        // eslint-disable-next-line tailwindcss/migration-from-tailwind-2
-        className={`fixed bottom-4 right-4 transform rounded-full p-4 
-          shadow-lg transition-all duration-300 ease-in-out hover:scale-110
-          ${
-            isOpen
-              ? 'rotate-180 bg-red-500 hover:bg-red-600'
-              : 'bg-blue-600 hover:bg-blue-700'
-          }`}
-      >
-        {isOpen ? (
-          <X className="size-6 text-white" />
-        ) : (
-          <MessageSquare className="size-6 text-white" />
-        )}
-      </button>
-      {/* Chat Window */}
-      <div
-        ref={chatWindowRef}
-        className={`fixed bottom-20 right-4 w-full max-w-[400px] rounded-2xl bg-white 
-          shadow-2xl transition-all duration-300 ease-in-out${
-            isOpen
-              ? 'pointer-events-auto translate-y-0 opacity-100'
-              : 'pointer-events-none translate-y-4 opacity-0'
-          }`}
-      >
-        {/* Header */}
-        <div className="rounded-t-2xl border-b border-gray-200 bg-blue-600 p-4 text-white">
-          <div className="flex items-center gap-2">
-            <Bot className="size-6" />
-            <div>
-              <h3 className="font-semibold">Sami AI Assistant</h3>
-              <p className="text-sm text-blue-100">
-                Your guide to everything Sami
+    <div ref={chatWindowRef} className="fixed bottom-5 right-5 z-50">
+      {/* ── Chat window ─────────────────────────────────────── */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            key="chat-window"
+            initial={{ opacity: 0, y: 16, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 16, scale: 0.96 }}
+            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-4 flex w-[360px] max-w-[calc(100vw-2.5rem)] flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0E0E1C] shadow-[0_24px_80px_rgba(0,0,0,0.7)]"
+            style={{ height: '520px' }}
+          >
+            {/* Header */}
+            <div className="relative flex items-center gap-3 border-b border-white/[0.06] bg-gradient-to-r from-blue-600/20 via-blue-600/10 to-transparent px-4 py-3.5">
+              {/* Glow */}
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_0%_50%,rgba(59,130,246,0.12),transparent)]" />
+
+              {/* Avatar */}
+              <div className="relative shrink-0">
+                <div className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-glow-blue-sm">
+                  <Bot className="size-4.5 text-white" />
+                </div>
+                <span className="absolute -bottom-0.5 -right-0.5 size-2.5 rounded-full border border-[#0E0E1C] bg-emerald-400" />
+              </div>
+
+              {/* Info */}
+              <div className="min-w-0 flex-1">
+                <p className="text-sm font-semibold text-white">
+                  Sami&apos;s AI Assistant
+                </p>
+                <p className="flex items-center gap-1.5 text-[0.7rem] text-white/35">
+                  <Sparkles className="size-2.5 text-blue-400" />
+                  Powered by Claude · Online
+                </p>
+              </div>
+
+              {/* Close */}
+              <button
+                onClick={() => setIsOpen(false)}
+                className="flex size-7 items-center justify-center rounded-lg text-white/30 transition-colors hover:bg-white/[0.07] hover:text-white"
+                aria-label="Close chat"
+              >
+                <X className="size-4" />
+              </button>
+            </div>
+
+            {/* Messages */}
+            <div className="scrollbar-thin flex-1 space-y-3 overflow-y-auto p-4">
+              {messages.map((msg, idx) => (
+                <div
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={idx}
+                  className={`flex items-end gap-2.5 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
+                >
+                  {/* Avatar */}
+                  <div
+                    className={`mb-0.5 flex size-6 shrink-0 items-center justify-center rounded-full ${
+                      msg.role === 'user' ? 'bg-blue-600/20' : 'bg-white/[0.06]'
+                    }`}
+                  >
+                    {msg.role === 'user' ? (
+                      <User className="size-3.5 text-blue-400" />
+                    ) : (
+                      <Bot className="size-3.5 text-white/40" />
+                    )}
+                  </div>
+
+                  {/* Bubble */}
+                  <div
+                    className={`max-w-[76%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
+                      msg.role === 'user'
+                        ? 'rounded-br-sm bg-blue-600 text-white'
+                        : 'rounded-bl-sm border border-white/[0.06] bg-white/[0.04] text-white/80'
+                    }`}
+                  >
+                    {msg.content}
+                  </div>
+                </div>
+              ))}
+
+              {/* Typing indicator */}
+              {isTyping && (
+                <div className="flex items-end gap-2.5">
+                  <div className="mb-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-white/[0.06]">
+                    <Bot className="size-3.5 text-white/40" />
+                  </div>
+                  <div className="rounded-2xl rounded-bl-sm border border-white/[0.06] bg-white/[0.04] px-3.5 py-3">
+                    <TypingDots />
+                  </div>
+                </div>
+              )}
+
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Input */}
+            <div className="border-t border-white/[0.06] bg-[#0A0A12] px-3 pb-3 pt-2.5">
+              <form
+                onSubmit={(e) => {
+                  void handleSubmit(e);
+                }}
+                className="flex items-end gap-2"
+              >
+                <TextareaAutosize
+                  ref={inputRef}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Ask me anything…"
+                  maxRows={4}
+                  className="flex-1 resize-none rounded-xl border border-white/[0.07] bg-white/[0.04] px-3.5 py-2.5 text-sm text-white outline-none transition-all placeholder:text-white/20 focus:border-blue-500/40 focus:bg-white/[0.07] focus:ring-1 focus:ring-blue-500/20"
+                />
+                <button
+                  type="submit"
+                  disabled={!message.trim() || isTyping}
+                  className="mb-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-white transition-all hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-30"
+                >
+                  <Send className="size-3.5" />
+                </button>
+              </form>
+              <p className="mt-1.5 text-center text-[0.62rem] text-white/15">
+                ↵ Enter to send · Shift+Enter for new line
               </p>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-        {/* Messages */}
-        <div className="h-[400px] space-y-4 overflow-y-auto p-4">
-          {messages.map((msg) => (
-            <div
-              key={msg.content}
-              className={`flex items-start gap-2 ${
-                msg.role === 'user' ? 'flex-row-reverse' : ''
-              }`}
-            >
-              <div
-                className={`flex size-8 shrink-0 items-center justify-center rounded-full
-                  ${
-                    msg.role === 'user'
-                      ? 'bg-blue-100 text-blue-600'
-                      : 'bg-gray-100 text-gray-600'
-                  }`}
-              >
-                {msg.role === 'user' ? (
-                  <User className="size-5" />
-                ) : (
-                  <Bot className="size-5" />
-                )}
-              </div>
-              <div
-                className={`max-w-[80%] rounded-2xl p-3
-                  ${
-                    msg.role === 'user'
-                      ? 'rounded-tr-none bg-blue-600 text-white'
-                      : 'rounded-tl-none bg-gray-100 text-gray-800'
-                  }`}
-              >
-                <p className="text-sm">{msg.content}</p>
-                <span className="mt-1 block text-xs opacity-70">
-                  {/* {msg.timestamp.toLocaleTimeString([], {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                  })} */}
-                </span>
-              </div>
-            </div>
-          ))}
-          {isTyping && (
-            <div className="flex items-center gap-2">
-              <div className="flex size-8 items-center justify-center rounded-full bg-gray-100">
-                <Bot className="size-5 text-gray-600" />
-              </div>
-              <div className="rounded-2xl rounded-tl-none bg-gray-100 p-3">
-                <Loader2 className="size-5 animate-spin text-gray-600" />
-              </div>
-            </div>
-          )}
-          <div ref={messagesEndRef} />
-        </div>
-
-        {/* Input Form */}
-        <form onSubmit={handleSubmit} className="border-t border-gray-200 p-4">
-          <div className="flex items-end gap-2">
-            <TextareaAutosize
-              value={message}
-              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                setMessage(e.target.value)
-              }
-              placeholder="Type your message..."
-              maxRows={4}
-              className="flex-1 resize-none rounded-xl border border-gray-200 p-3 
-                focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button
-              type="submit"
-              disabled={!message.trim()}
-              className="rounded-xl bg-blue-600 p-3 text-white transition-all duration-200
-                hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              <Send className="size-5" />
-            </button>
-          </div>
-        </form>
-      </div>
-    </>
+      {/* ── FAB trigger ──────────────────────────────────────── */}
+      <motion.button
+        onClick={isOpen ? () => setIsOpen(false) : open}
+        whileHover={{ scale: 1.07 }}
+        whileTap={{ scale: 0.94 }}
+        className={`relative ml-auto flex items-center gap-2.5 rounded-2xl border px-4 py-2.5 text-sm font-semibold text-white shadow-glow-blue transition-all duration-300 ${
+          isOpen
+            ? 'border-white/[0.1] bg-white/[0.07]'
+            : 'border-blue-500/30 bg-blue-600 hover:bg-blue-500 hover:shadow-glow-blue-lg'
+        }`}
+      >
+        {isOpen ? (
+          <>
+            <X className="size-4" />
+            Close
+          </>
+        ) : (
+          <>
+            <Bot className="size-4" />
+            Chat with AI
+            {/* Unread badge */}
+            {unread > 0 && !isOpen && (
+              <span className="absolute -right-1.5 -top-1.5 flex size-4 items-center justify-center rounded-full bg-emerald-500 text-[0.6rem] font-bold text-white">
+                {unread}
+              </span>
+            )}
+          </>
+        )}
+      </motion.button>
+    </div>
   );
 }
